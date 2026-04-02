@@ -1,0 +1,88 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'admin_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="background"></div>
+
+<section class="admin-section">
+
+  <div class="admin-header">
+    <div>
+      <h1>{{ accion }} <span class="highlight">producto</span></h1>
+      <p>{% if accion == 'Agregar' %}Completa los datos del nuevo producto{% else %}Modifica los datos del producto{% endif %}</p>
+    </div>
+    <a href="{% url 'admin_productos' %}" class="admin-btn-volver">Volver</a>
+  </div>
+
+  <div class="admin-form-card">
+    <form method="post" class="admin-form">
+      {% csrf_token %}
+
+      <div class="admin-form-grid">
+
+        <div class="admin-campo">
+          <label class="admin-label">Nombre</label>
+          <input type="text" name="nombre" class="admin-input"
+            value="{% if producto %}{{ producto.nombre }}{% endif %}" required>
+        </div>
+
+        <div class="admin-campo">
+          <label class="admin-label">Categoría</label>
+          <select name="categoria" class="admin-input">
+            {% for cat in categorias %}
+            <option value="{{ cat.id }}"
+              {% if producto and producto.Categoria.id == cat.id %}selected{% endif %}>
+              {{ cat.nombre }}
+            </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="admin-campo">
+          <label class="admin-label">Precio</label>
+          <input type="number" name="precio" class="admin-input" min="0"
+            value="{% if producto %}{{ producto.precio }}{% endif %}" required>
+        </div>
+
+        <div class="admin-campo">
+          <label class="admin-label">Stock</label>
+          <input type="number" name="stock" class="admin-input" min="0"
+            value="{% if producto %}{{ producto.stock }}{% endif %}" required>
+        </div>
+
+        <div class="admin-campo admin-campo-full">
+          <label class="admin-label">URL de imagen</label>
+          <input type="text" name="imagen" class="admin-input"
+            value="{% if producto %}{{ producto.imagen }}{% endif %}" required>
+        </div>
+
+        <div class="admin-campo admin-campo-full">
+          <label class="admin-label">Descripción</label>
+          <textarea name="descripcion" class="admin-input admin-textarea" rows="4" required>{% if producto %}{{ producto.descripcion }}{% endif %}</textarea>
+        </div>
+
+      </div>
+
+      {% if producto %}
+      <div class="admin-preview">
+        <p class="admin-label">Vista previa imagen actual</p>
+        <img src="{{ producto.imagen }}" alt="{{ producto.nombre }}" class="admin-preview-img" id="preview-img">
+      </div>
+      {% endif %}
+
+      <div class="admin-form-actions">
+        <a href="{% url 'admin_productos' %}" class="admin-btn-cancelar">Cancelar</a>
+        <button type="submit" class="admin-btn-guardar">{{ accion }} producto</button>
+      </div>
+
+    </form>
+  </div>
+
+</section>
+
+{% endblock %}

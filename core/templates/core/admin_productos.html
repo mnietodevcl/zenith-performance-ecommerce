@@ -1,0 +1,67 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load filtros %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'admin_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="background"></div>
+
+<section class="admin-section">
+
+  <div class="admin-header">
+    <div>
+      <h1>Gestión de <span class="highlight">productos</span></h1>
+      <p>Administra el catálogo de tu tienda</p>
+    </div>
+    <a href="{% url 'admin_agregar_producto' %}" class="admin-btn-agregar">
+      + Agregar producto
+    </a>
+  </div>
+
+  <div class="admin-tabla-wrap">
+    <table class="admin-tabla">
+      <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Nombre</th>
+          <th>Categoría</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for producto in productos %}
+        <tr>
+          <td>
+            <img src="{{ producto.imagen }}" alt="{{ producto.nombre }}" class="admin-tabla-img">
+          </td>
+          <td class="admin-tabla-nombre">{{ producto.nombre }}</td>
+          <td>
+            <span class="admin-badge-categoria">{{ producto.Categoria.nombre }}</span>
+          </td>
+          <td class="admin-tabla-precio">${{ producto.precio|precio_cl }}</td>
+          <td>
+            {% if producto.stock <= 10 %}
+            <span class="admin-stock-bajo">{{ producto.stock }}</span>
+            {% else %}
+            <span class="admin-stock-ok">{{ producto.stock }}</span>
+            {% endif %}
+          </td>
+          <td class="admin-tabla-acciones">
+            <a href="{% url 'admin_editar_producto' producto.codigo %}" class="admin-btn-editar">Editar</a>
+            <a href="{% url 'admin_eliminar_producto' producto.codigo %}" class="admin-btn-eliminar">Eliminar</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+{% endblock %}

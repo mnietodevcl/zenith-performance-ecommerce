@@ -1,0 +1,193 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block head %}
+{% endblock head %}
+
+{% block content %}
+
+<div class="background"></div>
+
+<section class="politica-section">
+
+  <div class="politica-header">
+    <span class="about-badge">Nuestros valores</span>
+    <h1>Compromiso de <span class="highlight">venta</span></h1>
+    <p>Nuestra dedicación contigo en cada paso de tu compra</p>
+  </div>
+
+  <div class="politica-container">
+
+    <!-- RESUMEN RÁPIDO -->
+    <div class="politica-resumen">
+      <div class="resumen-item"><span class="resumen-icon">🏆</span><span>Calidad garantizada</span></div>
+      <div class="resumen-item"><span class="resumen-icon">🤝</span><span>Atención personalizada</span></div>
+      <div class="resumen-item"><span class="resumen-icon">🔒</span><span>Compra segura</span></div>
+      <div class="resumen-item"><span class="resumen-icon">♻️</span><span>Compromiso sostenible</span></div>
+      <div class="resumen-item"><span class="resumen-icon">💚</span><span>Salud y bienestar</span></div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="compromiso-intro">
+      <p>En ZENITH PERFORMANCE, nuestro compromiso es ofrecer a nuestros clientes productos de alta calidad y una experiencia de compra excepcional. Cada decisión que tomamos está orientada a tu satisfacción y bienestar.</p>
+    </div>
+
+    <!-- DROPDOWNS -->
+    <div class="accordion-wrap">
+
+      <details class="accordion-item">
+        <summary class="accordion-header">
+          <div class="accordion-header-inner">
+            <span class="politica-numero">01</span>
+            <span class="accordion-titulo">Calidad y transparencia</span>
+          </div>
+          <span class="accordion-chevron">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </span>
+        </summary>
+        <div class="accordion-body">
+          <p>Nos aseguramos de que cada producto cumpla con los más altos estándares de calidad.</p>
+          <ul>
+            <li>Productos certificados y de marcas reconocidas</li>
+            <li>Descripciones precisas y transparentes en cada artículo</li>
+            <li>Sin ingredientes ocultos ni información engañosa</li>
+            <li>Control de calidad en cada despacho</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="accordion-item">
+        <summary class="accordion-header">
+          <div class="accordion-header-inner">
+            <span class="politica-numero">02</span>
+            <span class="accordion-titulo">Satisfacción garantizada</span>
+          </div>
+          <span class="accordion-chevron">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </span>
+        </summary>
+        <div class="accordion-body">
+          <p>Tu satisfacción es nuestra prioridad. Si algo no está bien, lo solucionamos.</p>
+          <ul>
+            <li>Opciones de devolución dentro de 30 días</li>
+            <li>Equipo de atención disponible por WhatsApp</li>
+            <li>Respuesta en menos de 24 horas hábiles</li>
+            <li>Soluciones rápidas ante cualquier inconveniente</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="accordion-item">
+        <summary class="accordion-header">
+          <div class="accordion-header-inner">
+            <span class="politica-numero">03</span>
+            <span class="accordion-titulo">Seguridad y privacidad</span>
+          </div>
+          <span class="accordion-chevron">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </span>
+        </summary>
+        <div class="accordion-body">
+          <p>Implementamos medidas de seguridad avanzadas para proteger tu información en todo momento.</p>
+          <ul>
+            <li>Pagos procesados con encriptación SSL</li>
+            <li>Tu información nunca es compartida con terceros</li>
+            <li>Plataforma de pago certificada por Transbank</li>
+            <li>Protección total de tus datos personales</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="accordion-item">
+        <summary class="accordion-header">
+          <div class="accordion-header-inner">
+            <span class="politica-numero">04</span>
+            <span class="accordion-titulo">Envíos eficientes</span>
+          </div>
+          <span class="accordion-chevron">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </span>
+        </summary>
+        <div class="accordion-body">
+          <p>Procesamos tus pedidos de manera rápida y eficiente para que recibas tus productos lo antes posible.</p>
+          <ul>
+            <li>Despacho en 24 a 48 horas hábiles</li>
+            <li>Envíos a todo Chile</li>
+            <li>Notificación cuando tu pedido sea despachado</li>
+            <li>Embalaje seguro para proteger tus productos</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="accordion-item">
+        <summary class="accordion-header">
+          <div class="accordion-header-inner">
+            <span class="politica-numero">05</span>
+            <span class="accordion-titulo">Salud y bienestar</span>
+          </div>
+          <span class="accordion-chevron">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </span>
+        </summary>
+        <div class="accordion-body">
+          <p>Promovemos hábitos saludables ofreciendo productos beneficiosos y orientación especializada.</p>
+          <ul>
+            <li>Productos respaldados por evidencia científica</li>
+            <li>Asesoría personalizada para elegir el suplemento ideal</li>
+            <li>Información nutricional clara en cada producto</li>
+            <li>Enfoque en tu rendimiento y bienestar a largo plazo</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="accordion-item">
+        <summary class="accordion-header">
+          <div class="accordion-header-inner">
+            <span class="politica-numero">06</span>
+            <span class="accordion-titulo">Mejora continua</span>
+          </div>
+          <span class="accordion-chevron">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </span>
+        </summary>
+        <div class="accordion-body">
+          <p>Valoramos tus comentarios y nos adaptamos constantemente para ofrecerte una mejor experiencia.</p>
+          <ul>
+            <li>Incorporamos nuevos productos según la demanda</li>
+            <li>Escuchamos activamente las opiniones de nuestros clientes</li>
+            <li>Mejoramos continuamente nuestros procesos</li>
+            <li>Adoptamos prácticas sostenibles para cuidar el medioambiente</li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+
+    <!-- NOTA FINAL -->
+    <div class="compromiso-final">
+      <div class="compromiso-final-inner">
+        <span class="compromiso-final-icon">🤝</span>
+        <div>
+          <h3>Nuestro compromiso contigo</h3>
+          <p>Este compromiso refleja nuestra dedicación a proporcionarte una experiencia de compra superior. Nos esforzamos para que cada interacción con ZENITH PERFORMANCE sea positiva, satisfactoria y que te ayude a alcanzar tus metas.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock content %}

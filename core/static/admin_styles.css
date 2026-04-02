@@ -1,0 +1,449 @@
+/* =========================
+   ADMIN SECTION
+========================= */
+
+.admin-section {
+    padding: 50px 60px 80px;
+    min-height: calc(100vh - 88px);
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.admin-header h1 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: #111;
+    margin: 0 0 6px 0;
+}
+
+.admin-header p {
+    font-size: 0.95rem;
+    color: #666;
+    margin: 0;
+}
+
+.admin-btn-agregar {
+    display: inline-block;
+    padding: 12px 28px;
+    background: #640AB7;
+    color: #ffffff;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.admin-btn-agregar:hover {
+    background: #7a1bd4;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(100, 10, 183, 0.30);
+    color: #ffffff;
+}
+
+.admin-btn-volver {
+    display: inline-block;
+    padding: 12px 24px;
+    background: rgba(100, 10, 183, 0.07);
+    color: #640AB7;
+    border: 1px solid rgba(100, 10, 183, 0.15);
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    transition: all 0.22s ease;
+    white-space: nowrap;
+}
+
+.admin-btn-volver:hover {
+    background: rgba(100, 10, 183, 0.14);
+    color: #640AB7;
+}
+
+/* =========================
+   TABLA
+========================= */
+
+.admin-tabla-wrap {
+    background: rgba(255, 255, 255, 0.90);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(100, 10, 183, 0.10);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.admin-tabla {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-tabla thead tr {
+    background: rgba(100, 10, 183, 0.04);
+    border-bottom: 1px solid rgba(100, 10, 183, 0.10);
+}
+
+.admin-tabla th {
+    padding: 14px 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-family: "Poppins", sans-serif;
+    text-align: left;
+}
+
+.admin-tabla tbody tr {
+    border-bottom: 1px solid rgba(100, 10, 183, 0.06);
+    transition: background 0.2s ease;
+}
+
+.admin-tabla tbody tr:last-child {
+    border-bottom: none;
+}
+
+.admin-tabla tbody tr:hover {
+    background: rgba(100, 10, 183, 0.02);
+}
+
+.admin-tabla td {
+    padding: 14px 20px;
+    font-family: "Poppins", sans-serif;
+    vertical-align: middle;
+}
+
+.admin-tabla-img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: rgba(100, 10, 183, 0.04);
+    padding: 4px;
+}
+
+.admin-tabla-nombre {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #111;
+    max-width: 220px;
+}
+
+.admin-tabla-precio {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #640AB7;
+}
+
+.admin-badge-categoria {
+    display: inline-block;
+    background: rgba(100, 10, 183, 0.08);
+    color: #640AB7;
+    border-radius: 999px;
+    padding: 3px 12px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+}
+
+.admin-stock-bajo {
+    display: inline-block;
+    background: rgba(224, 90, 0, 0.10);
+    color: #e05a00;
+    border-radius: 999px;
+    padding: 3px 12px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+}
+
+.admin-stock-ok {
+    display: inline-block;
+    background: rgba(34, 197, 94, 0.10);
+    color: #16a34a;
+    border-radius: 999px;
+    padding: 3px 12px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+}
+
+.admin-tabla-acciones {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.admin-btn-editar {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(100, 10, 183, 0.08);
+    color: #640AB7;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.admin-btn-editar:hover {
+    background: rgba(100, 10, 183, 0.16);
+    color: #640AB7;
+}
+
+.admin-btn-eliminar {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(224, 90, 0, 0.08);
+    color: #e05a00;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.admin-btn-eliminar:hover {
+    background: rgba(224, 90, 0, 0.16);
+    color: #e05a00;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.admin-form-card {
+    background: rgba(255, 255, 255, 0.90);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(100, 10, 183, 0.10);
+    border-radius: 20px;
+    padding: 36px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.admin-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-campo-full {
+    grid-column: 1 / -1;
+}
+
+.admin-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #555;
+    letter-spacing: 0.02em;
+    font-family: "Poppins", sans-serif;
+}
+
+.admin-input {
+    padding: 11px 16px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(100, 10, 183, 0.15);
+    background: rgba(255, 255, 255, 0.90);
+    font-size: 0.92rem;
+    font-family: "Poppins", sans-serif;
+    color: #111;
+    outline: none;
+    transition: all 0.25s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.admin-input:focus {
+    border-color: #640AB7;
+    box-shadow: 0 0 0 3px rgba(100, 10, 183, 0.10);
+}
+
+.admin-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.admin-preview {
+    margin-bottom: 24px;
+}
+
+.admin-preview-img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 14px;
+    background: rgba(100, 10, 183, 0.04);
+    padding: 8px;
+    margin-top: 8px;
+    border: 1px solid rgba(100, 10, 183, 0.10);
+}
+
+.admin-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(100, 10, 183, 0.08);
+}
+
+.admin-btn-cancelar {
+    display: inline-block;
+    padding: 12px 28px;
+    background: transparent;
+    color: #666;
+    border: 1.5px solid #ddd;
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    transition: all 0.22s ease;
+}
+
+.admin-btn-cancelar:hover {
+    border-color: #aaa;
+    color: #333;
+}
+
+.admin-btn-guardar {
+    display: inline-block;
+    padding: 12px 32px;
+    background: #640AB7;
+    color: #ffffff;
+    border: none;
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin: 0;
+}
+
+.admin-btn-guardar:hover {
+    background: #7a1bd4;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(100, 10, 183, 0.30);
+}
+
+/* =========================
+   ELIMINAR MEJORADO
+========================= */
+
+.admin-eliminar-preview {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: rgba(224, 90, 0, 0.05);
+    border: 1px solid rgba(224, 90, 0, 0.15);
+    border-radius: 16px;
+}
+
+.admin-eliminar-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: #ffffff;
+    padding: 8px;
+    border: 1px solid rgba(224, 90, 0, 0.10);
+    flex-shrink: 0;
+}
+
+.admin-eliminar-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-eliminar-nombre {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.eliminar-confirm-btn {
+    display: block;
+    width: 100%;
+    padding: 14px 0;
+    background: #e05a00;
+    color: #ffffff;
+    border: none;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: center;
+    margin: 0;
+}
+
+.eliminar-confirm-btn:hover {
+    background: #c94e00;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(224, 90, 0, 0.30);
+}
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 991px) {
+    .admin-section {
+        padding: 36px 30px 60px;
+    }
+
+    .admin-tabla-wrap {
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-section {
+        padding: 24px 20px 50px;
+    }
+
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-campo-full {
+        grid-column: 1;
+    }
+
+    .admin-header {
+        flex-direction: column;
+    }
+
+    .admin-form-actions {
+        flex-direction: column;
+    }
+
+    .admin-btn-guardar,
+    .admin-btn-cancelar {
+        width: 100%;
+        text-align: center;
+    }
+}

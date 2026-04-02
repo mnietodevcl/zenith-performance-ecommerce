@@ -1,0 +1,180 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load filtros %}
+{% block head %}
+<link rel="stylesheet" href="{% static "estilo-producto.css" %}">
+{% endblock head %}
+
+{% block content %}
+
+<div class="background"></div>
+
+<!-- ALERTAS PERSONALIZADAS -->
+<div id="alerta-container"></div>
+
+<!-- PRODUCTO PRINCIPAL -->
+<section class="producto-section">
+  <div class="producto-container">
+
+    <!-- IMAGEN -->
+    <div class="producto-imagen-side">
+      <div class="producto-imagen-wrap">
+        <img src="{{ producto.imagen }}" alt="{{ producto.nombre }}" class="producto-img">
+        {% if producto.Categoria %}
+        <span class="badge-categoria">{{ producto.Categoria.nombre }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- INFO -->
+    <div class="producto-info-side">
+
+      <span class="producto-codigo">Código: {{ producto.codigo }}</span>
+      <h1 class="producto-nombre">{{ producto.nombre }}</h1>
+
+      <div class="producto-precio-wrap">
+        <span class="producto-precio">${{ producto.precio|precio_cl }}</span>
+      </div>
+
+      {% if producto.stock != 0 and producto.stock <= 10 %}
+      <div class="producto-stock-bajo">⚡ ¡Solo quedan {{ producto.stock }} unidades!</div>
+      {% endif %}
+
+      <div class="producto-divider"></div>
+
+      <p class="producto-descripcion">{{ producto.descripcion }}</p>
+
+      <div class="producto-divider"></div>
+
+      {% if producto.stock != 0 %}
+      <form action="{% url 'addtocar' producto.codigo %}" method="post" class="producto-form" id="form-agregar">
+        {% csrf_token %}
+        <div class="cantidad-wrap">
+          <label class="cantidad-label">Cantidad</label>
+          <div class="cantidad-controls">
+            <button type="button" class="cantidad-btn" onclick="cambiarCantidad(-1)">−</button>
+            <input class="cantidad-input" id="inputQuantity" name="quantity" type="number" value="1" min="1" max="{{ producto.stock }}">
+            <button type="button" class="cantidad-btn" onclick="cambiarCantidad(1)">+</button>
+          </div>
+        </div>
+        <button type="button" class="btn-agregar" data-stock="{{ producto.stock }}" onclick="intentarAgregar()">
+          Añadir al carrito
+        </button>
+      </form>
+
+      {% else %}
+      <div class="producto-sin-stock">😕 Sin stock disponible</div>
+      {% endif %}
+
+    </div>
+
+  </div>
+</section>
+
+<!-- PRODUCTOS RELACIONADOS -->
+<section class="relacionados-section">
+  <div class="relacionados-header">
+    <h2>Productos <span class="highlight">relacionados</span></h2>
+  </div>
+
+  <div id="productos">
+    {% for item in productos %}
+    <div class="producto">
+
+      <a href="{% url 'producto' item.codigo %}" class="producto-imagen-link">
+        <img class="producto-imagen" src="{{ item.imagen }}" alt="{{ item.nombre }}">
+        {% if item.Categoria %}
+        <span class="badge-categoria">{{ item.Categoria.nombre }}</span>
+        {% endif %}
+        <div class="producto-overlay">
+          <span class="overlay-btn">Ver detalle →</span>
+        </div>
+      </a>
+
+      <div class="producto-body">
+        <div class="producto-nombre-card">{{ item.nombre }}</div>
+        <div class="producto-divider"></div>
+        <div class="producto-numeros">
+          {% if item.stock <= 10 %}
+          <span class="producto-stock-bajo-sm">⚡ ¡Quedan {{ item.stock }}!</span>
+          {% else %}
+          <span></span>
+          {% endif %}
+          <span class="producto-precio-card">${{ item.precio|precio_cl }}</span>
+        </div>
+        <a href="{% url 'producto' item.codigo %}" class="producto-btn">Ir al producto</a>
+      </div>
+
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+  function mostrarAlerta(mensaje, tipo) {
+    const container = document.getElementById('alerta-container');
+    const alerta = document.createElement('div');
+    alerta.className = `alerta-toast alerta-${tipo}`;
+    const icono = tipo === 'error' ? '❌' : tipo === 'exito' ? '✅' : '⚠️';
+    alerta.innerHTML = `
+      <span class="alerta-icono">${icono}</span>
+      <span class="alerta-mensaje">${mensaje}</span>
+      <button class="alerta-cerrar" onclick="this.parentElement.remove()">✕</button>
+    `;
+    container.appendChild(alerta);
+    requestAnimationFrame(() => alerta.classList.add('alerta-visible'));
+    setTimeout(() => {
+      alerta.classList.remove('alerta-visible');
+      setTimeout(() => alerta.remove(), 400);
+    }, 3500);
+  }
+
+  function cambiarCantidad(delta) {
+    const input = document.getElementById('inputQuantity');
+    const stock = parseInt(document.querySelector('.btn-agregar').dataset.stock);
+    const nuevo = parseInt(input.value) + delta;
+    if (nuevo < 1) {
+      mostrarAlerta('La cantidad mínima es 1.', 'error');
+      input.value = 1;
+    } else if (nuevo > stock) {
+      mostrarAlerta(`Solo hay ${stock} unidades disponibles.`, 'error');
+      input.value = stock;
+    } else {
+      input.value = nuevo;
+    }
+  }
+
+  document.getElementById('inputQuantity')?.addEventListener('input', function () {
+    const stock = parseInt(document.querySelector('.btn-agregar').dataset.stock);
+    const valor = parseInt(this.value);
+    if (!valor || valor < 1) {
+      mostrarAlerta('La cantidad mínima es 1.', 'error');
+      this.value = 1;
+    } else if (valor > stock) {
+      mostrarAlerta(`Solo hay ${stock} unidades disponibles.`, 'error');
+      this.value = stock;
+    }
+  });
+
+  function intentarAgregar() {
+    const input = document.getElementById('inputQuantity');
+    const cantidad = parseInt(input.value);
+    const stock = parseInt(document.querySelector('.btn-agregar').dataset.stock);
+    if (!cantidad || cantidad < 1) {
+      mostrarAlerta('Ingresa una cantidad válida antes de agregar.', 'error');
+      input.value = 1;
+      return;
+    }
+    if (cantidad > stock) {
+      mostrarAlerta(`Solo hay ${stock} unidades disponibles.`, 'error');
+      input.value = stock;
+      return;
+    }
+    mostrarAlerta('¡Producto agregado al carrito!', 'exito');
+    setTimeout(() => {
+      document.getElementById('form-agregar').submit();
+    }, 1200);
+  }
+</script>
+
+{% endblock content %}

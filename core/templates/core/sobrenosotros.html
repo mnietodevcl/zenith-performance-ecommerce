@@ -1,0 +1,142 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'about.css' %}">
+{% endblock head %}
+
+{% block content %}
+
+<div class="background"></div>
+
+<!-- HERO SOBRE NOSOTROS -->
+<section class="about-hero">
+  <div class="about-hero-inner">
+    <span class="about-badge">¿Quiénes somos?</span>
+    <h1 class="about-title">Somos <span class="highlight">ZENITH PERFORMANCE</span></h1>
+    <p class="about-subtitle">Apasionados por la salud, el rendimiento y tu bienestar.</p>
+  </div>
+</section>
+
+<!-- DESCRIPCIÓN -->
+<section class="about-desc-section">
+  <div class="about-desc-grid">
+
+    <div class="about-desc-text">
+      <h2>Nuestra <span class="highlight">historia</span></h2>
+      <p>En ZENITH PERFORMANCE nos dedicamos a ofrecerte los mejores productos para complementar tu alimentación y llevar tu rendimiento al siguiente nivel.</p>
+      <p>Nuestra pasión por la salud y el bienestar nos impulsa a ofrecer una amplia gama de suplementos nutricionales de alta calidad, respaldados por la ciencia y formulados para satisfacer tus necesidades específicas.</p>
+      <p>Creemos que la salud es una inversión en ti mismo. Únete a nosotros en nuestro viaje hacia una vida más saludable y activa.</p>
+    </div>
+
+    <div class="about-valores">
+      <div class="valor-card">
+        <span class="valor-icon">🏆</span>
+        <h3>Calidad</h3>
+        <p>Solo trabajamos con productos certificados y marcas de confianza.</p>
+      </div>
+      <div class="valor-card">
+        <span class="valor-icon">🔬</span>
+        <h3>Ciencia</h3>
+        <p>Suplementos respaldados por evidencia científica real.</p>
+      </div>
+      <div class="valor-card">
+        <span class="valor-icon">❤️</span>
+        <h3>Compromiso</h3>
+        <p>Tu bienestar es nuestra prioridad en cada producto.</p>
+      </div>
+      <div class="valor-card">
+        <span class="valor-icon">🚀</span>
+        <h3>Rendimiento</h3>
+        <p>Potencia tu entrenamiento y alcanza tus metas.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ESTADÍSTICAS -->
+<section class="about-stats">
+  <div class="about-stats-inner">
+    <div class="stat-item">
+      <span class="stat-numero">500+</span>
+      <span class="stat-label">Clientes satisfechos</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-numero">50+</span>
+      <span class="stat-label">Productos disponibles</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-numero">100%</span>
+      <span class="stat-label">Productos originales</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-numero">24h</span>
+      <span class="stat-label">Despacho express</span>
+    </div>
+  </div>
+</section>
+
+<!-- MAPA -->
+<section class="about-map-section" id="map-section">
+  <div class="about-map-header">
+    <h2>Encuéntranos <span class="highlight">aquí</span></h2>
+    <p>Visítanos en nuestra tienda física en Melipilla</p>
+  </div>
+
+  <div class="about-map-wrap">
+    <div id="map"></div>
+  </div>
+</section>
+
+<script>
+  function initMap() {
+    var coordenadas = { lat: -33.694130, lng: -71.214230 };
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: coordenadas,
+      zoom: 17,
+      styles: [
+        { featureType: "all", elementType: "geometry", stylers: [{ color: "#f5f5f5" }] },
+        { featureType: "road", elementType: "geometry", stylers: [{ color: "#ffffff" }] },
+        { featureType: "road.arterial", elementType: "labels.text.fill", stylers: [{ color: "#757575" }] },
+        { featureType: "poi.park", elementType: "geometry", stylers: [{ color: "#e5f5e5" }] },
+        { featureType: "water", elementType: "geometry", stylers: [{ color: "#c9e8f5" }] },
+        { featureType: "transit.station", elementType: "geometry", stylers: [{ color: "#eeeeee" }] }
+      ]
+    });
+
+    var markerIcon = {
+      url: "{% static 'imgs/zlogo.png' %}",
+      scaledSize: new google.maps.Size(75, 50)
+    };
+
+    var marker = new google.maps.Marker({
+      position: coordenadas,
+      map: map,
+      icon: markerIcon,
+      title: 'ZENITH PERFORMANCE'
+    });
+
+    var infoWindow = new google.maps.InfoWindow({
+      content: '<div style="font-family:Poppins,sans-serif;padding:8px 4px;"><strong style="color:#640AB7;">ZENITH PERFORMANCE</strong><br><span style="font-size:13px;color:#555;">Melipilla, Chile</span></div>'
+    });
+
+    marker.addListener('click', function () {
+      infoWindow.open(map, marker);
+    });
+  }
+
+  window.onload = function () {
+    if (typeof google !== 'undefined') {
+      initMap();
+    }
+  }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlva8KVmEMpxGq4LsnOSs_yqXM0L3vbFo&callback=initMap" async defer></script>
+
+{% endblock content %}

@@ -1,0 +1,113 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="background"></div>
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="hero-split">
+
+    <div class="hero-text">
+      <span class="hero-badge">Rendimiento y bienestar</span>
+      <h1 class="hero-title">Potencia tu<br><span class="hero-highlight">entrenamiento</span></h1>
+      <p class="hero-desc">Suplementos de calidad para mejorar tu rendimiento físico y alcanzar tus metas.</p>
+      <div class="hero-buttons">
+        <a href="{% url 'productos' %}" class="btn hero-btn-primary">Ver productos</a>
+      </div>
+    </div>
+
+    <div class="hero-image-wrap">
+      <img src="{% static 'imgs/hero.jpeg' %}" alt="Producto" class="hero-img">
+    </div>
+
+  </div>
+</section>
+
+
+<!-- BANNER PROMOCIONAL -->
+<section class="promo-banner">
+  <div class="promo-banner-inner">
+    <span class="promo-fire">🔥</span>
+    <p class="promo-text">Ofertas del mes — <strong>hasta 30% de descuento</strong> en productos seleccionados</p>
+    <a href="{% url 'productos' %}" class="promo-btn">Ver ofertas</a>
+  </div>
+</section>
+
+<!-- CATEGORÍAS DESTACADAS -->
+<section class="categorias-section">
+  <div class="categorias-header">
+    <h2>Nuestras <span class="highlight">categorías</span></h2>
+    <p>Encuentra exactamente lo que necesitas para tu entrenamiento</p>
+  </div>
+
+  <div class="categorias-grid">
+
+    <a href="{% url 'productos' %}" class="categoria-card">
+      <div class="categoria-icon">🥤</div>
+      <h3>Proteínas</h3>
+      <p>Whey, caseína, veganas y más</p>
+      <span class="categoria-link">Ver productos →</span>
+    </a>
+
+    <a href="{% url 'productos' %}" class="categoria-card">
+      <div class="categoria-icon">⚡</div>
+      <h3>Pre-entrenos</h3>
+      <p>Energía y enfoque para cada sesión</p>
+      <span class="categoria-link">Ver productos →</span>
+    </a>
+
+    <a href="{% url 'productos' %}" class="categoria-card">
+      <div class="categoria-icon">💊</div>
+      <h3>Vitaminas</h3>
+      <p>Suplementos para tu salud diaria</p>
+      <span class="categoria-link">Ver productos →</span>
+    </a>
+
+    <a href="{% url 'productos' %}" class="categoria-card">
+      <div class="categoria-icon">💪</div>
+      <h3>Creatina</h3>
+      <p>Fuerza y rendimiento al máximo</p>
+      <span class="categoria-link">Ver productos →</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- POR QUÉ ELEGIRNOS -->
+<section class="por-que-section">
+  <div class="categorias-header">
+    <h2>¿Por qué elegir <span class="highlight">ZENITH PERFORMANCE?</span></h2>
+    <p>Nos comprometemos con tu rendimiento y tu confianza</p>
+  </div>
+
+  <div class="por-que-grid">
+
+    <div class="por-que-card">
+      <div class="por-que-icon">🚚</div>
+      <h3>Envío rápido</h3>
+      <p>Despacho a todo Chile en 24 a 48 horas hábiles directamente a tu puerta.</p>
+    </div>
+
+    <div class="por-que-card">
+      <div class="por-que-icon">✅</div>
+      <h3>Productos originales</h3>
+      <p>Solo trabajamos con marcas certificadas y productos 100% auténticos.</p>
+    </div>
+
+    <div class="por-que-card">
+      <div class="por-que-icon">💰</div>
+      <h3>Mejores precios</h3>
+      <p>Precios competitivos y ofertas exclusivas para que entrenes sin límites.</p>
+    </div>
+
+    <div class="por-que-card">
+      <div class="por-que-icon">🎧</div>
+      <h3>Soporte real</h3>
+      <p>Te asesoramos por WhatsApp para que elijas el suplemento ideal para ti.</p>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

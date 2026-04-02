@@ -1,0 +1,123 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load filtros %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'perfil_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="background"></div>
+
+<section class="perfil-section">
+
+  <div class="perfil-container">
+
+    <!-- SIDEBAR IZQUIERDO -->
+    <div class="perfil-sidebar">
+
+      <div class="perfil-avatar-wrap">
+        <div class="perfil-avatar">
+          <span class="perfil-avatar-inicial">{{ user.username|first|upper }}</span>
+        </div>
+        <h2 class="perfil-username">{{ user.username }}</h2>
+        <div class="perfil-badges">
+          <span class="perfil-badge">✅ Activo</span>
+          {% if user.is_staff %}
+          <span class="perfil-badge perfil-badge-admin">⚙️ Admin</span>
+          {% else %}
+          <span class="perfil-badge perfil-badge-cliente">👤 Cliente</span>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="perfil-info-card">
+        <div class="perfil-info-item">
+          <span class="perfil-info-label">Usuario</span>
+          <span class="perfil-info-valor">{{ user.username }}</span>
+        </div>
+        <div class="perfil-divider"></div>
+        <div class="perfil-info-item">
+          <span class="perfil-info-label">Correo</span>
+          <span class="perfil-info-valor">{{ user.email|default:"No registrado" }}</span>
+        </div>
+        <div class="perfil-divider"></div>
+        <div class="perfil-info-item">
+          <span class="perfil-info-label">Miembro desde</span>
+          <span class="perfil-info-valor">{{ user.date_joined|date:"d/m/Y" }}</span>
+        </div>
+        <div class="perfil-divider"></div>
+        <div class="perfil-info-item">
+          <span class="perfil-info-label">Total compras</span>
+          <span class="perfil-info-valor highlight">{{ ventas.count }}</span>
+        </div>
+      </div>
+
+      <a href="{% url 'password_reset' %}" class="perfil-cambiar-pass">
+        🔑 Cambiar contraseña
+      </a>
+
+      <form action="{% url 'logout' %}" method="post" style="width:100%;">
+        {% csrf_token %}
+        <button type="submit" class="perfil-logout-btn">Cerrar sesión</button>
+      </form>
+
+    </div>
+
+    <!-- CONTENIDO DERECHO -->
+    <div class="perfil-main">
+
+      <div class="perfil-main-header">
+        <h2>Historial de <span class="highlight">compras</span></h2>
+        <p>Todas tus compras realizadas en ZENITH PERFORMANCE</p>
+      </div>
+
+      {% if ventas %}
+        {% for venta in ventas %}
+        <div class="perfil-venta-card">
+
+          <div class="perfil-venta-header">
+            <div class="perfil-venta-meta">
+              <span class="perfil-venta-id">Orden #{{ venta.id }}</span>
+              <span class="perfil-venta-fecha">{{ venta.fecha|date:"d/m/Y H:i" }}</span>
+            </div>
+            <span class="perfil-venta-total">${{ venta.total|precio_cl }}</span>
+          </div>
+
+          <div class="perfil-venta-divider"></div>
+
+          <div class="perfil-venta-productos">
+            {% for detalle in venta.detalle_set.all %}
+            <div class="perfil-detalle-item">
+              <div class="perfil-detalle-img-wrap">
+                <img src="{{ detalle.producto.imagen }}" alt="{{ detalle.producto.nombre }}" class="perfil-detalle-img">
+              </div>
+              <div class="perfil-detalle-info">
+                <span class="perfil-detalle-nombre">{{ detalle.producto.nombre }}</span>
+                <span class="perfil-detalle-cantidad">Cantidad: {{ detalle.cantidad }}</span>
+              </div>
+              <span class="perfil-detalle-precio">${{ detalle.precio|precio_cl }}</span>
+            </div>
+            {% endfor %}
+          </div>
+
+        </div>
+        {% endfor %}
+
+      {% else %}
+        <div class="perfil-vacio">
+          <span class="perfil-vacio-icono">🛒</span>
+          <h3>Aún no tienes compras</h3>
+          <p>Explora nuestro catálogo y encuentra los suplementos que necesitas.</p>
+          <a href="{% url 'productos' %}" class="perfil-vacio-btn">Ver productos</a>
+        </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}

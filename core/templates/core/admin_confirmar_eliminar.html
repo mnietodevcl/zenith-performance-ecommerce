@@ -1,0 +1,51 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'admin_styles.css' %}">
+<link rel="stylesheet" href="{% static 'login_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="background"></div>
+
+<section class="login-section">
+  <div class="login-card">
+
+    <div class="login-header">
+      <div class="reset-icono">🗑️</div>
+      <h1 class="login-title">Eliminar producto</h1>
+      <p class="login-subtitle">Esta acción no se puede deshacer</p>
+    </div>
+
+    <div class="admin-eliminar-preview">
+      <img src="{{ producto.imagen }}" alt="{{ producto.nombre }}" class="admin-eliminar-img">
+      <div class="admin-eliminar-info">
+        <p class="admin-eliminar-nombre">{{ producto.nombre }}</p>
+        <span class="admin-badge-categoria">{{ producto.Categoria.nombre }}</span>
+      </div>
+    </div>
+
+    <div class="done-info">
+      <div class="done-item">
+        <span class="done-icon">⚠️</span>
+        <p>Al eliminar este producto se borrará permanentemente del catálogo y no podrá recuperarse.</p>
+      </div>
+    </div>
+
+    <form method="post" style="display:flex; flex-direction:column; gap:12px; margin-top:4px;">
+      {% csrf_token %}
+      <button type="submit" class="eliminar-confirm-btn">
+        🗑️ Sí, eliminar producto
+      </button>
+    </form>
+
+    <a href="{% url 'admin_productos' %}" class="login-register-btn" style="margin-top:4px;">
+      Cancelar
+    </a>
+
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,350 @@
+/* =========================
+   SECTION
+========================= */
+
+.login-section {
+    min-height: calc(100vh - 88px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.login-card {
+    width: 100%;
+    max-width: 440px;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(100, 10, 183, 0.12);
+    border-radius: 28px;
+    padding: 44px 40px 48px;
+    box-shadow: 0 20px 60px rgba(100, 10, 183, 0.14), 0 6px 20px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.login-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.login-logo {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+}
+
+.login-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #111;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.login-subtitle {
+    font-size: 0.9rem;
+    color: #888;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* =========================
+   ERROR GENERAL
+========================= */
+
+.login-error {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(254, 242, 242, 0.95);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    color: #c0392b;
+    font-weight: 500;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.campo-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.campo-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #444;
+    letter-spacing: 0.02em;
+}
+
+.campo-forgot {
+    font-size: 0.8rem;
+    color: #640AB7;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+}
+
+.campo-forgot:hover {
+    opacity: 0.7;
+    color: #640AB7;
+}
+
+.campo-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.campo-icon {
+    position: absolute;
+    left: 14px;
+    width: 17px;
+    height: 17px;
+    color: #aaa;
+    pointer-events: none;
+    flex-shrink: 0;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.login-form input[type="text"],
+.login-form input[type="password"],
+.login-form input[type="email"] {
+    width: 100%;
+    padding: 12px 42px 12px 42px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(100, 10, 183, 0.15);
+    background: rgba(255, 255, 255, 0.90);
+    font-size: 0.95rem;
+    font-family: "Poppins", sans-serif;
+    color: #111;
+    outline: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    height: auto;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus,
+.login-form input[type="email"]:focus {
+    border-color: #640AB7;
+    box-shadow: 0 0 0 3px rgba(100, 10, 183, 0.10);
+    background: #ffffff;
+}
+
+.login-form input[type="text"]::placeholder,
+.login-form input[type="password"]::placeholder,
+.login-form input[type="email"]::placeholder {
+    color: #bbb;
+}
+
+/* =========================
+   OJO CONTRASEÑA
+========================= */
+
+.ojo-btn {
+    position: absolute;
+    right: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    width: auto !important;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    color: #aaa;
+    transition: color 0.2s ease;
+}
+
+.ojo-btn:hover {
+    color: #640AB7;
+    background: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.ojo-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* =========================
+   ERRORES Y HINTS
+========================= */
+
+.campo-error {
+    font-size: 0.78rem;
+    color: #e05a00;
+    font-weight: 500;
+    padding-left: 4px;
+}
+
+.campo-hint-toggle {
+    padding-left: 4px;
+    cursor: pointer;
+}
+
+.campo-hint-toggle summary {
+    color: #640AB7;
+    font-weight: 500;
+    font-size: 0.78rem;
+    cursor: pointer;
+    list-style: none;
+    transition: opacity 0.2s ease;
+}
+
+.campo-hint-toggle summary:hover {
+    opacity: 0.7;
+}
+
+.campo-hint-toggle summary::-webkit-details-marker {
+    display: none;
+}
+
+.campo-hint-toggle summary::before {
+    content: '▸ ';
+}
+
+.campo-hint-toggle[open] summary::before {
+    content: '▾ ';
+}
+
+.campo-hint {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.76rem;
+    color: #aaa;
+    font-weight: 400;
+    line-height: 1.6;
+    padding-left: 4px;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+.login-btn {
+    width: 100%;
+    padding: 14px 0;
+    background: #640AB7;
+    color: #ffffff;
+    border: none;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin-top: 4px;
+}
+
+.login-btn:hover {
+    background: #7a1bd4;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(100, 10, 183, 0.35);
+}
+
+.login-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.login-divider::before,
+.login-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(100, 10, 183, 0.10);
+}
+
+.login-divider span {
+    font-size: 0.82rem;
+    color: #aaa;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.login-register-btn {
+    display: block;
+    width: 100%;
+    padding: 13px 0;
+    background: transparent;
+    color: #640AB7;
+    border: 2px solid #640AB7;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.login-register-btn:hover {
+    background: #640AB7;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   RESET ÍCONO
+========================= */
+
+.reset-icono {
+    font-size: 3rem;
+    line-height: 1;
+}
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: 32px 24px 36px;
+        border-radius: 22px;
+    }
+
+    .login-title {
+        font-size: 1.4rem;
+    }
+}

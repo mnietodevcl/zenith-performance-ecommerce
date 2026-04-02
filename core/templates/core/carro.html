@@ -1,0 +1,159 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load filtros %}
+{% block head %}
+<link rel="stylesheet" href="{% static "carro_styles.css" %}">
+{% endblock head %}
+
+{% block content %}
+
+<div class="background"></div>
+<div id="alerta-container"></div>
+
+<section class="carro-section">
+
+  <div class="carro-header">
+    <h1>Tu <span class="highlight">carrito</span></h1>
+    <p>Revisa tus productos antes de continuar</p>
+  </div>
+
+  <div class="carro-container {% if carro_vacio %}vacio{% endif %}">
+
+    <!-- PRODUCTOS -->
+    <div class="carro-productos">
+
+      {% if carro_vacio %}
+      <div class="carro-vacio">
+        <span class="carro-vacio-icono">🛒</span>
+        <h3>Tu carrito está vacío</h3>
+        <p>Agrega productos para comenzar tu compra</p>
+        <a href="{% url 'productos' %}" class="btn-vacio">Ver productos</a>
+      </div>
+
+      {% else %}
+        {% for item in carro %}
+        <div class="carro-item">
+
+          <a href="{% url 'producto' item.0 %}" class="carro-item-img-wrap">
+            <img src="{{ item.2 }}" alt="{{ item.1 }}" class="carro-item-img">
+          </a>
+
+          <div class="carro-item-info">
+            <div class="carro-item-nombre">{{ item.1 }}</div>
+            <div class="carro-item-precio">${{ item.3|precio_cl }} <span class="carro-item-unit">/ unidad</span></div>
+          </div>
+
+          <div class="carro-item-right">
+
+            <form action="{% url 'actualizar_cantidad' item.0 %}" method="post" class="cantidad-form">
+              {% csrf_token %}
+              <div class="cantidad-controls">
+                <button type="button" class="cantidad-btn" onclick="cambiarCantidad(this, -1)">−</button>
+                <input type="number" name="cantidad" class="cantidad-input" value="{{ item.4 }}" min="1" readonly>
+                <button type="button" class="cantidad-btn" onclick="cambiarCantidad(this, 1)">+</button>
+              </div>
+              <button type="submit" class="cantidad-actualizar">Actualizar</button>
+            </form>
+
+            <div class="carro-item-total">${{ item.5|precio_cl }}</div>
+
+            <a href="{% url 'eliminar' item.0 %}" class="carro-eliminar">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+              </svg>
+              Eliminar
+            </a>
+
+          </div>
+
+        </div>
+        {% endfor %}
+      {% endif %}
+
+    </div>
+
+    <!-- RESUMEN -->
+    {% if not carro_vacio %}
+    <div class="carro-resumen">
+
+      <h2 class="resumen-titulo">Resumen de compra</h2>
+      <div class="resumen-divider"></div>
+
+      <div class="resumen-fila">
+        <span class="resumen-label">Subtotal</span>
+        <span class="resumen-valor">${{ total|precio_cl }}</span>
+      </div>
+
+      <div class="resumen-fila">
+        <span class="resumen-label">Envío</span>
+        <span class="resumen-valor">$3.490</span>
+      </div>
+
+      <div class="resumen-divider"></div>
+
+      <div class="resumen-fila resumen-total">
+        <span>Total</span>
+        <span>${{ superTotal|precio_cl }}</span>
+      </div>
+
+      {% if user.is_authenticated %}
+      <a href="{% url 'iniciar_pago' %}" class="btn-pagar">
+      Pagar ahora
+      </a>
+      {% else %}
+      <a href="{% url 'login' %}" class="btn-pagar btn-login">
+        Iniciar sesión para pagar
+      </a>
+      {% endif %}
+
+      <a href="{% url 'productos' %}" class="btn-seguir">
+        Seguir comprando
+      </a>
+
+    </div>
+    {% endif %}
+
+  </div>
+
+</section>
+
+<script>
+  function cambiarCantidad(btn, delta) {
+    const controls = btn.closest('.cantidad-controls');
+    const input = controls.querySelector('.cantidad-input');
+    const nuevo = parseInt(input.value) + delta;
+    if (nuevo >= 1) {
+      input.value = nuevo;
+    } else {
+      mostrarAlerta('La cantidad mínima es 1.', 'error');
+    }
+  }
+
+  function mostrarAlerta(mensaje, tipo) {
+    const container = document.getElementById('alerta-container');
+    const alerta = document.createElement('div');
+    alerta.className = `alerta-toast alerta-${tipo}`;
+    const icono = tipo === 'error' ? '❌' : tipo === 'exito' ? '✅' : '⚠️';
+    alerta.innerHTML = `
+      <span class="alerta-icono">${icono}</span>
+      <span class="alerta-mensaje">${mensaje}</span>
+      <button class="alerta-cerrar" onclick="this.parentElement.remove()">✕</button>
+    `;
+    container.appendChild(alerta);
+    requestAnimationFrame(() => alerta.classList.add('alerta-visible'));
+    setTimeout(() => {
+      alerta.classList.remove('alerta-visible');
+      setTimeout(() => alerta.remove(), 400);
+    }, 3500);
+  }
+
+  function mostrarAlertaCompra(event) {
+    event.preventDefault();
+    mostrarAlerta('¡Compra realizada con éxito!', 'exito');
+    setTimeout(() => {
+      window.location.href = "{% url 'comprar' %}";
+    }, 1400);
+  }
+</script>
+
+{% endblock content %}

@@ -1,0 +1,435 @@
+/* =========================
+   HEADER
+========================= */
+
+.productos-section {
+    padding: 50px 60px 80px;
+}
+
+.productos-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.productos-header h1 {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    color: #111;
+    margin: 0 0 12px 0;
+}
+
+.productos-header p {
+    font-size: 1.05rem;
+    color: #555;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* =========================
+   BUSCADOR + FILTROS
+========================= */
+
+.buscador-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buscador-input-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+}
+
+.buscador-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: #999;
+    pointer-events: none;
+}
+
+.buscador-input {
+    width: 100%;
+    padding: 13px 20px 13px 46px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(100, 10, 183, 0.18);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    font-size: 0.95rem;
+    font-family: "Poppins", sans-serif;
+    color: #111;
+    outline: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.buscador-input:focus {
+    border-color: #640AB7;
+    box-shadow: 0 0 0 3px rgba(100, 10, 183, 0.12);
+    background: #ffffff;
+}
+
+.buscador-input::placeholder {
+    color: #aaa;
+}
+
+.filtros-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.filtro-btn {
+    padding: 8px 20px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(100, 10, 183, 0.20);
+    background: rgba(255, 255, 255, 0.75);
+    color: #555;
+    font-size: 0.88rem;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    backdrop-filter: blur(6px);
+}
+
+.filtro-btn:hover {
+    border-color: #640AB7;
+    color: #640AB7;
+    background: rgba(100, 10, 183, 0.06);
+}
+
+.filtro-btn.active {
+    background: #640AB7;
+    border-color: #640AB7;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(100, 10, 183, 0.30);
+}
+
+.orden-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.orden-select {
+    padding: 9px 20px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(100, 10, 183, 0.18);
+    background: rgba(255, 255, 255, 0.85);
+    color: #555;
+    font-size: 0.88rem;
+    font-weight: 500;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.22s ease;
+    backdrop-filter: blur(6px);
+}
+
+.orden-select:focus {
+    border-color: #640AB7;
+    box-shadow: 0 0 0 3px rgba(100, 10, 183, 0.10);
+}
+
+/* =========================
+   CONTADOR
+========================= */
+
+.productos-contador {
+    text-align: center;
+    margin-bottom: 32px;
+    font-size: 0.88rem;
+    color: #888;
+    font-weight: 400;
+}
+
+.productos-contador strong {
+    color: #640AB7;
+    font-weight: 700;
+}
+
+/* =========================
+   GRID
+========================= */
+
+#productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 28px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.producto {
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(100, 10, 183, 0.10);
+    border-radius: 22px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    transition: all 0.28s ease;
+}
+
+.producto:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(100, 10, 183, 0.16);
+    border-color: rgba(100, 10, 183, 0.25);
+    background: rgba(255, 255, 255, 0.96);
+}
+
+/* =========================
+   IMAGEN + OVERLAY
+========================= */
+
+.producto-imagen-wrap {
+    display: block;
+    width: 100%;
+    height: 210px;
+    overflow: hidden;
+    background: #ffffff;
+    position: relative;
+}
+
+.producto-imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    padding: 12px;
+    transition: transform 0.35s ease;
+}
+
+.producto:hover .producto-imagen {
+    transform: scale(1.06);
+}
+
+.producto-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(100, 10, 183, 0.55);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.28s ease;
+}
+
+.producto:hover .producto-overlay {
+    opacity: 1;
+}
+
+.overlay-btn {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    padding: 10px 24px;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+    transition: background 0.2s ease;
+}
+
+.overlay-btn:hover {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+/* =========================
+   BADGE CATEGORÍA
+========================= */
+
+.badge-categoria {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.92);
+    color: #640AB7;
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    padding: 4px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+    backdrop-filter: blur(4px);
+    z-index: 2;
+}
+
+/* =========================
+   BODY
+========================= */
+
+.producto-body {
+    padding: 18px 20px 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+}
+
+.producto-nombre {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.4;
+}
+
+.producto-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(100, 10, 183, 0.08);
+    margin: 2px 0;
+}
+
+.producto-numeros {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.producto-stock-bajo {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #e05a00;
+    background: rgba(224, 90, 0, 0.08);
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+}
+
+.producto-stock-ok {
+    display: block;
+    width: 0;
+}
+
+.producto-precio {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #640AB7;
+}
+
+.producto-precio-solo {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #bbb;
+}
+
+.producto-btn {
+    display: block;
+    width: 100%;
+    margin-top: auto;
+    padding: 11px 0;
+    background-color: #640AB7;
+    color: #ffffff;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.producto-btn:hover {
+    background-color: #7a1bd4;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(100, 10, 183, 0.30);
+}
+
+/* =========================
+   SIN STOCK
+========================= */
+
+.producto-sin-stock {
+    display: block;
+    width: 100%;
+    padding: 11px 0;
+    background: rgba(0, 0, 0, 0.05);
+    color: #999;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* =========================
+   SIN RESULTADOS
+========================= */
+
+.sin-resultados {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.sin-resultados span {
+    font-size: 3rem;
+}
+
+.sin-resultados p {
+    font-size: 1.05rem;
+    color: #666;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 991px) {
+    .productos-section {
+        padding: 36px 30px 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .productos-section {
+        padding: 28px 20px 50px;
+    }
+
+    #productos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .producto-imagen-wrap {
+        height: 170px;
+    }
+
+    .buscador-input-wrap {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    #productos {
+        grid-template-columns: 1fr;
+    }
+}

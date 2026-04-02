@@ -1,0 +1,573 @@
+/* =========================
+   PRODUCTO PRINCIPAL
+========================= */
+
+.producto-section {
+    padding: 50px 60px 60px;
+    min-height: calc(100vh - 88px);
+    display: flex;
+    align-items: center;
+}
+
+.producto-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* =========================
+   IMAGEN LADO
+========================= */
+
+.producto-imagen-side {
+    flex: 1;
+    position: sticky;
+    top: 30px;
+}
+
+.producto-imagen-wrap {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(100, 10, 183, 0.10);
+    box-shadow: 0 20px 50px rgba(100, 10, 183, 0.14), 0 6px 16px rgba(0,0,0,0.08);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.producto-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 24px;
+    transition: transform 0.4s ease;
+}
+
+.producto-imagen-wrap:hover .producto-img {
+    transform: scale(1.04);
+}
+
+.badge-categoria {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    background: rgba(255, 255, 255, 0.92);
+    color: #640AB7;
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    padding: 4px 12px;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+    backdrop-filter: blur(4px);
+    z-index: 2;
+}
+
+/* =========================
+   INFO LADO
+========================= */
+
+.producto-info-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.producto-codigo {
+    font-size: 0.82rem;
+    color: #999;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.producto-nombre {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 800;
+    color: #111;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.producto-precio-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.producto-precio {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #640AB7;
+}
+
+.producto-stock-bajo {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #e05a00;
+    background: rgba(224, 90, 0, 0.08);
+    padding: 6px 14px;
+    border-radius: 999px;
+    width: fit-content;
+}
+
+.producto-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(100, 10, 183, 0.08);
+}
+
+.producto-descripcion {
+    font-size: 0.98rem;
+    color: #555;
+    line-height: 1.8;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* =========================
+   FORM CANTIDAD
+========================= */
+
+.producto-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cantidad-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cantidad-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #666;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.cantidad-controls {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    width: fit-content;
+    border-radius: 999px;
+    overflow: hidden;
+    border: 1.5px solid rgba(100, 10, 183, 0.20);
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.cantidad-btn {
+    width: 42px;
+    height: 42px;
+    background: transparent;
+    border: none;
+    color: #640AB7;
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    width: 42px !important;
+}
+
+.cantidad-btn:hover {
+    background: rgba(100, 10, 183, 0.08);
+    transform: none;
+    box-shadow: none;
+}
+
+.cantidad-input {
+    width: 56px;
+    height: 42px;
+    text-align: center;
+    border: none;
+    border-left: 1.5px solid rgba(100, 10, 183, 0.12);
+    border-right: 1.5px solid rgba(100, 10, 183, 0.12);
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    color: #111;
+    background: transparent;
+    outline: none;
+    -moz-appearance: textfield;
+}
+
+.cantidad-input::-webkit-outer-spin-button,
+.cantidad-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.btn-agregar {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    background-color: #640AB7;
+    color: #ffffff;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    transition: all 0.25s ease;
+    margin: 0;
+}
+
+.btn-agregar:hover {
+    background-color: #7a1bd4;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(100, 10, 183, 0.35);
+}
+
+.producto-sin-stock {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    background: rgba(0, 0, 0, 0.05);
+    color: #999;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+}
+
+/* =========================
+   PRODUCTOS RELACIONADOS
+========================= */
+
+.relacionados-section {
+    padding: 20px 60px 80px;
+}
+
+.relacionados-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.relacionados-header h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: #111;
+    margin: 0;
+}
+
+.highlight {
+    color: #640AB7;
+}
+
+#productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* =========================
+   CARDS RELACIONADOS
+========================= */
+
+.producto {
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(100, 10, 183, 0.10);
+    border-radius: 22px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    transition: all 0.28s ease;
+}
+
+.producto:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(100, 10, 183, 0.16);
+    border-color: rgba(100, 10, 183, 0.25);
+    background: rgba(255, 255, 255, 0.96);
+}
+
+.producto-imagen-link {
+    display: block;
+    width: 100%;
+    height: 190px;
+    overflow: hidden;
+    background: rgba(100, 10, 183, 0.04);
+    position: relative;
+}
+
+.producto-imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.35s ease;
+}
+
+.producto:hover .producto-imagen {
+    transform: scale(1.06);
+}
+
+.producto-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(100, 10, 183, 0.55);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.28s ease;
+}
+
+.producto:hover .producto-overlay {
+    opacity: 1;
+}
+
+.overlay-btn {
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    padding: 9px 22px;
+    border-radius: 999px;
+}
+
+.producto-body {
+    padding: 16px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+}
+
+.producto-nombre-card {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.4;
+}
+
+.producto-numeros {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.producto-stock-bajo-sm {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #e05a00;
+    background: rgba(224, 90, 0, 0.08);
+    padding: 3px 8px;
+    border-radius: 999px;
+}
+
+.producto-precio-card {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #640AB7;
+}
+
+.producto-btn {
+    display: block;
+    width: 100%;
+    margin-top: auto;
+    padding: 10px 0;
+    background-color: #640AB7;
+    color: #ffffff;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.producto-btn:hover {
+    background-color: #7a1bd4;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(100, 10, 183, 0.30);
+}
+
+/* =========================
+   ALERTAS TOAST
+========================= */
+
+#alerta-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none;
+}
+
+.alerta-toast {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.14);
+    min-width: 280px;
+    max-width: 360px;
+    pointer-events: all;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.alerta-toast.alerta-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.alerta-exito {
+    background: rgba(240, 253, 244, 0.95);
+    border: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+.alerta-error {
+    background: rgba(254, 242, 242, 0.95);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.alerta-advertencia {
+    background: rgba(255, 251, 235, 0.95);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.alerta-icono {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.alerta-mensaje {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #111;
+    font-family: "Poppins", sans-serif;
+    flex: 1;
+    line-height: 1.4;
+}
+
+.alerta-cerrar {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    width: auto !important;
+    min-width: unset;
+    box-shadow: none;
+    transition: color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.alerta-cerrar:hover {
+    color: #333;
+    background: none;
+    transform: none;
+    box-shadow: none;
+}
+
+/* =========================
+   RELACIONADOS CENTRADO
+========================= */
+
+#productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 260px));
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 991px) {
+    .producto-section {
+        padding: 36px 30px 50px;
+        min-height: auto;
+    }
+
+    .producto-container {
+        flex-direction: column;
+        gap: 36px;
+    }
+
+    .producto-imagen-side {
+        position: static;
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+    }
+
+    .relacionados-section {
+        padding: 20px 30px 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .producto-section {
+        padding: 24px 20px 40px;
+    }
+
+    .producto-nombre {
+        font-size: 1.6rem;
+    }
+
+    .producto-precio {
+        font-size: 1.6rem;
+    }
+
+    .relacionados-section {
+        padding: 20px 20px 50px;
+    }
+
+    #productos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    #productos {
+        grid-template-columns: 1fr;
+    }
+}

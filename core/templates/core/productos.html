@@ -1,0 +1,174 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load filtros %}
+{% block head %}
+<link rel="stylesheet" href="{% static "estilo-productos.css" %}">
+{% endblock head %}
+
+{% block content %}
+
+<div class="background"></div>
+
+<section class="productos-section">
+
+  <div class="productos-header">
+    <h1>Nuestros <span class="highlight">productos</span></h1>
+    <p>Encuentra todo lo que necesitas para llevar tu entrenamiento al siguiente nivel</p>
+  </div>
+
+  <!-- BUSCADOR -->
+  <div class="buscador-wrap">
+    <div class="buscador-input-wrap">
+      <svg class="buscador-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" id="buscador" class="buscador-input" placeholder="Buscar producto...">
+    </div>
+
+    <!-- FILTROS DE CATEGORÍA -->
+    <div class="filtros-wrap">
+      <button class="filtro-btn active" data-categoria="todos">Todos</button>
+      <button class="filtro-btn" data-categoria="Proteínas">Proteínas</button>
+      <button class="filtro-btn" data-categoria="Pre-entrenos">Pre-entrenos</button>
+      <button class="filtro-btn" data-categoria="Vitaminas">Vitaminas</button>
+      <button class="filtro-btn" data-categoria="Creatina">Creatina</button>
+      <button class="filtro-btn" data-categoria="Quemadores">Quemadores</button>
+      <button class="filtro-btn" data-categoria="Gainers">Gainers</button>
+      <button class="filtro-btn" data-categoria="Accesorios">Accesorios</button>
+    </div>
+
+    <!-- ORDENAR -->
+    <div class="orden-wrap">
+      <select id="ordenar" class="orden-select">
+        <option value="default">Ordenar por</option>
+        <option value="precio-asc">Precio: menor a mayor</option>
+        <option value="precio-desc">Precio: mayor a menor</option>
+        <option value="nombre-asc">Nombre: A → Z</option>
+      </select>
+    </div>
+
+  </div>
+
+  <!-- CONTADOR -->
+  <div class="productos-contador">
+    <span id="contador-texto">Mostrando <strong id="contador-num">0</strong> productos</span>
+  </div>
+
+  <!-- GRID -->
+  <div id="productos">
+    {% for item in productos %}
+    <div class="producto"
+         data-nombre="{{ item.nombre|lower }}"
+         data-categoria="{{ item.Categoria.nombre }}"
+         data-precio="{{ item.precio }}">
+
+      <a href="{% url 'producto' item.codigo %}" class="producto-imagen-wrap">
+        <img class="producto-imagen" src="{{ item.imagen }}" alt="{{ item.nombre }}">
+
+        {% if item.Categoria %}
+        <span class="badge-categoria">{{ item.Categoria.nombre }}</span>
+        {% endif %}
+
+        <div class="producto-overlay">
+          <span class="overlay-btn">Ver detalle →</span>
+        </div>
+      </a>
+
+      <div class="producto-body">
+
+        <div class="producto-nombre">{{ item.nombre }}</div>
+
+        <div class="producto-divider"></div>
+
+        {% if item.stock != 0 %}
+          <div class="producto-numeros">
+
+            {% if item.stock <= 10 %}
+              <span class="producto-stock-bajo">⚡ ¡Quedan {{ item.stock }}!</span>
+            {% else %}
+              <span class="producto-stock-ok"></span>
+            {% endif %}
+
+            <span class="producto-precio">${{ item.precio|precio_cl }}</span>
+
+          </div>
+          <a href="{% url 'addtocar' item.codigo %}" class="producto-btn">
+            Añadir al carrito
+          </a>
+        {% else %}
+          <div class="producto-precio-solo">Sin precio</div>
+          <div class="producto-sin-stock">Sin stock disponible</div>
+        {% endif %}
+
+      </div>
+
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- SIN RESULTADOS -->
+  <div id="sin-resultados" class="sin-resultados" style="display:none;">
+    <span>😕</span>
+    <p>No encontramos productos con ese filtro.</p>
+  </div>
+
+</section>
+
+<script>
+  const buscador = document.getElementById('buscador');
+  const filtros = document.querySelectorAll('.filtro-btn');
+  const ordenar = document.getElementById('ordenar');
+  const grid = document.getElementById('productos');
+  const sinResultados = document.getElementById('sin-resultados');
+  const contadorNum = document.getElementById('contador-num');
+
+  let categoriaActiva = 'todos';
+
+  function getProductos() {
+    return Array.from(document.querySelectorAll('.producto'));
+  }
+
+  function filtrar() {
+    const texto = buscador.value.toLowerCase().trim();
+    const orden = ordenar.value;
+    let productos = getProductos();
+
+    productos.forEach(p => {
+      const nombre = p.dataset.nombre || '';
+      const categoria = p.dataset.categoria || '';
+      const coincideTexto = nombre.includes(texto);
+      const coincideCategoria = categoriaActiva === 'todos' || categoria === categoriaActiva;
+      p.style.display = (coincideTexto && coincideCategoria) ? 'flex' : 'none';
+    });
+
+    const visibles = productos.filter(p => p.style.display !== 'none');
+
+    visibles.sort((a, b) => {
+      if (orden === 'precio-asc') return Number(a.dataset.precio) - Number(b.dataset.precio);
+      if (orden === 'precio-desc') return Number(b.dataset.precio) - Number(a.dataset.precio);
+      if (orden === 'nombre-asc') return a.dataset.nombre.localeCompare(b.dataset.nombre);
+      return 0;
+    });
+
+    visibles.forEach(p => grid.appendChild(p));
+
+    contadorNum.textContent = visibles.length;
+    sinResultados.style.display = visibles.length === 0 ? 'flex' : 'none';
+  }
+
+  buscador.addEventListener('input', filtrar);
+  ordenar.addEventListener('change', filtrar);
+
+  filtros.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filtros.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      categoriaActiva = btn.dataset.categoria;
+      filtrar();
+    });
+  });
+
+  filtrar();
+</script>
+
+{% endblock content %}
