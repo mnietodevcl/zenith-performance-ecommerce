@@ -26,7 +26,11 @@ SECRET_KEY = config('SECRET_KEY', default='cambiar-esta-clave-antes-de-produccio
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["zenith-performance-ecommerce.vercel.app",
+    ".vercel.app",
+    "localhost",
+    "127.0.0.1",
+    ]
 
 
 # Application definition
