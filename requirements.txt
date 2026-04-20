@@ -5,3 +5,4 @@ sqlparse==0.5.5
 tzdata==2025.3
 transbank-sdk==6.1.0
 whitenoise == 6.12.0
+pyscopg-binary == 3.3.3 
